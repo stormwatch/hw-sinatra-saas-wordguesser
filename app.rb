@@ -2,6 +2,12 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require_relative './lib/wordguesser_game'
 
+GAME_ERBS = {
+  lose: :lose,
+  play: :show,
+  win: :win
+}
+
 class WordGuesserApp < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
@@ -54,11 +60,7 @@ class WordGuesserApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    case @game.check_win_or_lose
-    when :win then erb :win
-    when :lose then erb :lose
-    else erb :show
-    end
+    erb GAME_ERBS[@game.check_win_or_lose]
   end
 
   not_found do
