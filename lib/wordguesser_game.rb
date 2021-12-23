@@ -16,7 +16,7 @@ class WordGuesserGame
   def guess(letter)
     raise ArgumentError, 'Expected a letter' unless WordGuesserGame.valid_guess?(letter)
 
-    letter = letter.downcase
+    letter.downcase!
     played = @word.include?(letter) ? @guesses : @wrong_guesses
     played.include?(letter) ? false : played << letter
   end
