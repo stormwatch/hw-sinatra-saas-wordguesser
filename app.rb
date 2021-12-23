@@ -55,19 +55,9 @@ class WordGuesserApp < Sinatra::Base
   get '/show' do
     ### YOUR CODE HERE ###
     case @game.check_win_or_lose
-    when :win then redirect '/win'
-    when :lose then redirect '/lose'
+    when :win then erb :win
+    when :lose then erb :lose
     else erb :show
     end
-  end
-
-  get '/win' do
-    ### YOUR CODE HERE ###
-    erb :win # You may change/remove this line
-  end
-
-  get '/lose' do
-    ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
   end
 end
