@@ -60,4 +60,8 @@ class WordGuesserApp < Sinatra::Base
     else erb :show
     end
   end
+
+  not_found do
+    redirect '/show'
+  end
 end
