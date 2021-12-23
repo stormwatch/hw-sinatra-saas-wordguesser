@@ -25,7 +25,7 @@ class WordGuesserGame
   end
 
   def word_with_guesses
-    @word.gsub /[^#{@guesses}*]/, '-'
+    @word.gsub(/[^#{@guesses}*]/, '-')
   end
 
   def check_win_or_lose
