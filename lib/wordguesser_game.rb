@@ -14,10 +14,9 @@ class WordGuesserGame
   end
 
   def guess(letter)
-    raise ArgumentError, 'Expected a letter' if letter.nil? || letter.empty? || /\p{^L}/.match?(letter)
+    raise ArgumentError, 'Expected a letter' unless WordGuesserGame.valid_guess?(letter)
 
     letter = letter.downcase
-
     played = @word.include?(letter) ? @guesses : @wrong_guesses
     played.include?(letter) ? false : played << letter
   end
@@ -45,5 +44,9 @@ class WordGuesserGame
     Net::HTTP
       .new('randomword.saasbook.info')
       .start { |http| return http.post(uri, '').body }
+  end
+
+  def self.valid_guess?(letter)
+    /\p{L}/.match? letter
   end
 end
