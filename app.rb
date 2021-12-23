@@ -6,7 +6,7 @@ GAME_ERBS = {
   lose: :lose,
   play: :show,
   win: :win
-}
+}.freeze
 
 class WordGuesserApp < Sinatra::Base
   enable :sessions
