@@ -1,16 +1,19 @@
+DEFAULT_MAXIMUM_WRONG_GUESSES = 7
+
 class WordGuesserGame
   # add the necessary class methods, attributes, etc. here
   # to make the tests in spec/wordguesser_game_spec.rb pass.
 
   # Get a word from remote "random word" service
 
-  attr_reader :word, :guesses, :wrong_guesses
+  attr_reader :word, :guesses, :wrong_guesses, :maximum_wrong_guesses
 
-  def initialize(word)
+  def initialize(word, maximum_wrong_guesses = DEFAULT_MAXIMUM_WRONG_GUESSES)
     @word = word
     @solution = word
     @guesses = ''
     @wrong_guesses = ''
+    @maximum_wrong_guesses = maximum_wrong_guesses
   end
 
   def guess(letter)
@@ -26,7 +29,7 @@ class WordGuesserGame
   end
 
   def check_win_or_lose
-    return :lose if @wrong_guesses.length >= 7
+    return :lose if @wrong_guesses.length >= @maximum_wrong_guesses
 
     return :win if @word.chars.uniq.sort == @guesses.chars.sort
 
