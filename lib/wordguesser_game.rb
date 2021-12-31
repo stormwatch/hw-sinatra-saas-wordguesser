@@ -10,7 +10,7 @@ class WordGuesserGame
 
   def initialize(word, maximum_wrong_guesses = DEFAULT_MAXIMUM_WRONG_GUESSES)
     @word = word
-    @solution = word
+    @solution = word.chars.uniq.sort
     @guesses = ''
     @wrong_guesses = ''
     @maximum_wrong_guesses = maximum_wrong_guesses
@@ -31,7 +31,7 @@ class WordGuesserGame
   def check_win_or_lose
     return :lose if @wrong_guesses.length >= @maximum_wrong_guesses
 
-    return :win if @word.chars.uniq.sort == @guesses.chars.sort
+    return :win if @solution == @guesses.chars.sort
 
     :play
   end
