@@ -31,7 +31,7 @@ class WordGuesserGame
   def check_win_or_lose
     return :lose if @wrong_guesses.length >= @maximum_wrong_guesses
 
-    return :win if @solution == @guesses.chars.sort
+    return :win if @solution == @guesses.chars.sort && !@solution.empty?
 
     :play
   end
