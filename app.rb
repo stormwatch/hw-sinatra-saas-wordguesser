@@ -60,7 +60,14 @@ class WordGuesserApp < Sinatra::Base
   # wrong_guesses and word_with_guesses from @game.
   get '/show' do
     ### YOUR CODE HERE ###
-    erb GAME_ERBS[@game.check_win_or_lose]
+    case @game.check_win_or_lose
+    when :win
+      redirect :win
+    when :lose
+      redirect :lose
+    else
+      erb :show
+    end
   end
 
   # This `not_found` block would be enough to provide a functional app. All
